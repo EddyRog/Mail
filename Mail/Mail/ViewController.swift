@@ -21,6 +21,21 @@ struct Mail {
     }
 }
 
+extension UIImage {
+    static func gradientImage(bounds: CGRect, colors: [CGColor]) -> UIImage {
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        gradient.colors = colors
+        
+        UIGraphicsBeginImageContext(gradient.bounds.size)
+        gradient.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image!
+    }
+}
+
 class ViewController: UIViewController {
 
     // MARK: - iVAR - CONSTANT - IB
@@ -37,45 +52,85 @@ class ViewController: UIViewController {
     // SCROLLING TABLEVIEW
     var lastVerticalOffset: CGFloat = 0
     var headerViewOriginalHeight: CGFloat = 0
+    // SETTING | NAVIGATION ITEM / TITLE
+    let navBarAppearance = UINavigationBarAppearance()
+    var topItemLabel = UILabel()
     
     
     // MARK: - CYCLE LIFE
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        overrideUserInterfaceStyle = .light // force dark theme on ios
         spinnerLoadingTableView() // set data
         
         //setup
-        setArrayMail()
+        setDataArrayMail()
         setUpNavigationItem()
-        setUpView()
+        setUpNavigationItemForTopItem()
+        setUpViewToBlackColor()
+        customNavBarTransparency() // custom image for navbar transparency
     }
     
-    // MARK: - SETTING
+    func customNavBarTransparency() {
+        //*****************
+        guard let bounds = navigationController?.navigationBar.bounds else { return }
+        
+        var backImageForDefaultBarMetrics = UIImage.gradientImage(bounds: bounds, colors: [UIColor.black.cgColor, UIColor.systemFill.cgColor])
+        backImageForDefaultBarMetrics = backImageForDefaultBarMetrics.resizableImage( withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: backImageForDefaultBarMetrics.size.height - 1, right: backImageForDefaultBarMetrics.size.width - 1))
+        
+        let navigationBarAppearance = self.navigationController!.navigationBar
+        navigationBarAppearance.setBackgroundImage(backImageForDefaultBarMetrics, for: .default)
+        //*****************
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+    }
+    
+    
+    // MARK: - SETTING | NAVIGATION ITEM
+    fileprivate func setUpViewToBlackColor() {
+        self.view.backgroundColor = UIColor.black
+        self.tableView.backgroundColor = UIColor.black // view and tableView on top
+    }
     fileprivate func setUpNavigationItem() {
         // set data
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
+//        navBarAppearance.configureWithTransparentBackground()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.backgroundColor = UIColor.black
+        
+        //MARK: -
+        // FIXME: remettre sur clear par default
+//        navBarAppearance.backgroundColor = UIColor.clear
+        navBarAppearance.backgroundColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.5)
+        // MARK: -
         
         self.navigationItem.standardAppearance = navBarAppearance
         self.navigationItem.compactAppearance = navBarAppearance
         self.navigationItem.scrollEdgeAppearance = navBarAppearance
+        
+        // test test test
     }
-    fileprivate func setUpView() {
-        self.view.backgroundColor = UIColor.black
-        self.tableView.backgroundColor = UIColor.black // view and tableView on top
+    fileprivate func setUpNavigationItemForTopItem() {
+        // label For Top item ( title )
+        topItemLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        topItemLabel.text = mailArray[0].title
+        //        lab.backgroundColor = .red
+        topItemLabel.textColor = UIColor.white
+        topItemLabel.alpha = 0
+        self.navigationItem.titleView = topItemLabel
     }
     
+    var debugT:Bool? = nil
+    var mess:String = ""
 }
 
 // MARK: - SCROLLING TABLEVIEW
 extension ViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         // 📢 : defaultFirstHeaderRow 60 px.
         let verticalOffset = scrollView.contentOffset.y
         let scrollAmount = verticalOffset - lastVerticalOffset // get amount scrolling since last time
@@ -83,8 +138,26 @@ extension ViewController {
         
         let alphaVariation = scrollAmount/(defaultFirstHeaderRow)
         
-        print("vOffset : \(verticalOffset) | scrollAmount : \(scrollAmount) | lastVerticalOffset : \(lastVerticalOffset) | alpahVariation : \(alphaVariation) ")
+        print("debug\(mess) : \(debugT) | vOffset : \(verticalOffset) | scrollAmount : \(scrollAmount) | lastVerticalOffset : \(lastVerticalOffset) | alpahVariation : \(alphaVariation) ")
         
+        switch verticalOffset {
+            case _ where verticalOffset < defaultFirstHeaderRow:
+                mess = "verticalOffset < defaultFirstHeaderRow"
+                debugT = verticalOffset < defaultFirstHeaderRow
+                topItemLabel.alpha = 0 // show label after 60px under
+            // cacher label dans navigation bar en animation
+            
+            case _ where verticalOffset >= defaultFirstHeaderRow:
+                // afficher boite dans navigation Bar
+                mess = "verticalOffset >= defaultFirstHeaderRow"
+                debugT = verticalOffset >= defaultFirstHeaderRow
+                topItemLabel.alpha = 1 // show label after 60px down
+                
+        
+            
+            default:
+            break
+        }
         
         //        switch newConstant {
         //            case _ where newConstant >= 0:
@@ -216,10 +289,10 @@ extension ViewController {
 // MARK: - DATA HYDRATE TABLEVIEW
 extension ViewController {
     // Set Mail
-    func setArrayMail() {
+    func setDataArrayMail() {
         mailArray.append(Mail(title: "Boîtes", detail:["-Toutes les boites","-iCloud","-Gmail","-Yahoo","-VIP", "-Special"]))
         mailArray.append(Mail(title: "ACTION MAIL", detail:["Reception","Brouillon","envoyé","Corbeille","Archive"]))
-        mailArray.append(Mail(title: "ACTION MAIL", detail:["Reception","Brouillon","envoyé","Corbeille","Archive"]))
+        mailArray.append(Mail(title: "ACTION MAIL", detail:["Reception","Brouillon","envoyé","Corbeille","Archive", "magie", "Draft", "mario"]))
     }
 }
 

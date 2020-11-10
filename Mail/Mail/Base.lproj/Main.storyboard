@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="78Y-ro-fD2">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="78Y-ro-fD2">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,18 +13,18 @@
             <objects>
                 <viewController interfaceStyle="light" id="BYZ-38-t0r" customClass="ViewController" customModule="Mail" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-pB-Fep">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="kkT-J3-eho">
-                                        <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kkT-J3-eho" id="S8K-YY-XDO">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -34,18 +35,18 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="dSq-pB-Fep" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Rnr-N8-ayb"/>
-                            <constraint firstItem="dSq-pB-Fep" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ksj-9w-jUd"/>
-                            <constraint firstItem="dSq-pB-Fep" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="vgc-v4-E3f"/>
-                            <constraint firstItem="dSq-pB-Fep" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xI8-vo-GO3"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <constraints>
+                            <constraint firstItem="dSq-pB-Fep" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-44" id="9ll-fN-J5s"/>
+                            <constraint firstItem="dSq-pB-Fep" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C79-UM-TLh"/>
+                            <constraint firstItem="dSq-pB-Fep" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KC3-SV-oKF"/>
+                            <constraint firstItem="dSq-pB-Fep" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="jLQ-9X-UhL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RW1-0T-ZE4">
                         <barButtonItem key="rightBarButtonItem" title="Modifier" id="Cfr-6M-1Fz"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="navigationItemcustom" destination="RW1-0T-ZE4" id="XGC-fp-5aR"/>
                         <outlet property="tableView" destination="dSq-pB-Fep" id="Eql-LD-JYY"/>
@@ -53,18 +54,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="137.94642857142856"/>
+            <point key="canvasLocation" x="1045.5999999999999" y="137.18140929535232"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5ei-iw-dFl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="78Y-ro-fD2" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" toolbarHidden="NO" id="78Y-ro-fD2" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gd2-u0-ykO">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Gfl-Cp-A6b">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="3IP-VS-HD8"/>
                     </connections>
