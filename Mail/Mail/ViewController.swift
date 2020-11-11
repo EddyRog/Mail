@@ -6,11 +6,9 @@
 //  Copyright © 2020 Eddy R. All rights reserved.
 //
 
-// ❔ Quoi   - 🗺 Ou   - ⏳Quand - ✋Comment
-// 🤸🏽 Action - 🗺 Lieu - ⏳Temps - ✋Maniere
 
 import UIKit
-
+// MARK: - Model
 struct Mail {
     var title: String?
     var detail: [String]?
@@ -23,23 +21,35 @@ struct Mail {
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    
-    var mailArray: [Mail] = []
-    var defaultFirstHeaderRow: CGFloat = 1 // HEIGHT ROW : HEADER 
+    var mailArray: [Mail] = [] // MODEL
+    var defaultFirstHeaderRow: CGFloat = 1 // HEIGHT ROW : HEADER
     var defaultRestOfHeaderRow: CGFloat = 30
     
+    // ⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬
+    
+    // MARK: - CYCLE LIFE
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDataArrayMail()
-        self.title = mailArray[0].title
-        
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        setDataArrayForMail()
+        self.title = mailArray[0].title // set title off navigation Bar
+        setUpRefreshControl()
         
     }
     
-    func setDataArrayMail() {
+    @objc func didpull() {
+        print("didpull")
+        DispatchQueue.global(qos: .background).async {
+            sleep(UInt32(2))
+            DispatchQueue.main.sync {
+                self.tableView.refreshControl?.endRefreshing()
+                print("refresh")
+            }
+        }
+    }
+    
+    // MARK: - SET UP
+    //model
+    func setDataArrayForMail() {
         mailArray.append(Mail(title: "Boîtes", detail:["-Toutes les boites","-iCloud","-Gmail","-Yahoo","-VIP", "-Special"]))
         mailArray.append(Mail(title: "ACTION MAIL", detail:["Reception","Brouillon","envoyé","Corbeille","Archive"]))
         mailArray.append(Mail(title: "ACTION MAIL", detail:["Reception","Brouillon","envoyé","Corbeille","Archive", "magie", "Draft", "mario"]))
@@ -61,27 +71,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-// MARK: - Header, Footer
-extension ViewController {
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return mailArray[section].title
-    }
-    // footer tableview
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
-    }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let v = UIView()
-        
-        v.backgroundColor = .red
-        return v
-    }
-}
 
-// MARK: - HEIGHT ROW : FOOTER
+// MARK: - HEADER TABLEVIEW
 extension ViewController {
-    
-    // header
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section != 0 {
             return defaultRestOfHeaderRow
@@ -128,10 +120,38 @@ extension ViewController {
         }
         
     }
-
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return mailArray[section].title
+    }
 }
 
+// MARK: - FOOTER TABLEVIEW
+extension ViewController {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let v = UIView()
+        v.backgroundColor = .red
+        return v
+    }
+}
 
+// MARK: - SPINNER RELOAD DATA
+extension ViewController {
+    // Spinner behind TableView
+    func setUpRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        // custom on refresh mail
+        let myString = NSMutableAttributedString(string: "Fetching Data")
+        myString.addAttribute(.foregroundColor, value: UIColor.orange, range: NSRange(location: 0, length: myString.length))
+        myString.addAttribute(.foregroundColor, value: UIColor.purple, range: NSMakeRange(0, 5))
+        tableView.refreshControl?.attributedTitle = myString
+        tableView.refreshControl?.tintColor = .red
+        tableView.refreshControl?.addTarget(self, action: #selector(didpull), for: .valueChanged)
+    }
+//
+}
 
 
 
@@ -204,7 +224,7 @@ extension ViewController {
  @IBOutlet weak var navigationItemcustom: UINavigationItem! // NAVIGATION BAR
  @IBOutlet weak var tableView: UITableView! // TABLEVIEW FROM SB
  
- var refreshControl = UIRefreshControl() // SPINNER RELOAD DATA
+ 
  var defaultFirstHeaderRow: CGFloat = 60 // HEIGHT ROW : HEADER | FOOTER
  var defaultRestOfHeaderRow: CGFloat = 30
  var mailArray = [Mail]() // DATA HYDRATE TABLEVIEW
@@ -345,32 +365,7 @@ extension ViewController {
  }
  }
  
- // MARK: - SPINNER RELOAD DATA
- extension ViewController {
- // Spinner reload
- func spinnerLoadingTableView() {
- refreshControl.addTarget(self, action: #selector(self.pullToRefresh), for: .valueChanged)
- refreshControl.tintColor = UIColor.white
- tableView?.alwaysBounceVertical = true
- tableView?.addSubview(refreshControl)
  
- // custom on refresh mail
- let myString = NSMutableAttributedString(string: "Fetching Data")
- myString.addAttribute(.foregroundColor, value: UIColor.orange, range: NSRange(location: 0, length: myString.length))
- myString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, 5))
- refreshControl.attributedTitle = myString
- tableView?.addSubview(refreshControl)
- }
- @objc func pullToRefresh(sender: UIRefreshControl) {
- DispatchQueue.global(qos: .background).async {
- sleep(UInt32(2))
- DispatchQueue.main.sync {
- sender.endRefreshing()
- print("refresh")
- }
- }
- }
- }
  
  
  

@@ -17,9 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="YMt-NY-KBC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="YMt-NY-KBC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="n5b-t5-hMw">
@@ -39,6 +38,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="a28-4P-NFa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YMt-NY-KBC" firstAttribute="leading" secondItem="a28-4P-NFa" secondAttribute="leading" id="RqN-hy-UU6"/>
+                            <constraint firstItem="YMt-NY-KBC" firstAttribute="centerY" secondItem="9Yy-FA-RRq" secondAttribute="centerY" id="X2G-r8-07K"/>
+                            <constraint firstItem="YMt-NY-KBC" firstAttribute="bottom" secondItem="a28-4P-NFa" secondAttribute="bottom" id="XEM-ry-xnf"/>
+                            <constraint firstItem="YMt-NY-KBC" firstAttribute="centerX" secondItem="9Yy-FA-RRq" secondAttribute="centerX" id="tge-B5-grf"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wtj-cA-Loe">
                         <barButtonItem key="rightBarButtonItem" title="Modifier" id="m9H-kU-1wl"/>
