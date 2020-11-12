@@ -15,6 +15,7 @@
 		9380C4112559E2C800B50DD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9380C4102559E2C800B50DD8 /* Assets.xcassets */; };
 		9380C4142559E2C800B50DD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9380C4122559E2C800B50DD8 /* LaunchScreen.storyboard */; };
 		9380C41F2559E2C800B50DD8 /* MailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380C41E2559E2C800B50DD8 /* MailTests.swift */; };
+		9392E458255C70A000B8536E /* MailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392E456255C70A000B8536E /* MailTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		9380C41A2559E2C800B50DD8 /* MailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9380C41E2559E2C800B50DD8 /* MailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailTests.swift; sourceTree = "<group>"; };
 		9380C4202559E2C800B50DD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9392E456255C70A000B8536E /* MailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				9380C4122559E2C800B50DD8 /* LaunchScreen.storyboard */,
 				9380C4152559E2C800B50DD8 /* Info.plist */,
 				9380C40D2559E2C600B50DD8 /* Mail.xcdatamodeld */,
+				9392E456255C70A000B8536E /* MailTableViewCell.swift */,
 			);
 			path = Mail;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				9380C40F2559E2C600B50DD8 /* Mail.xcdatamodeld in Sources */,
 				9380C4092559E2C600B50DD8 /* ViewController.swift in Sources */,
+				9392E458255C70A000B8536E /* MailTableViewCell.swift in Sources */,
 				9380C4052559E2C600B50DD8 /* AppDelegate.swift in Sources */,
 				9380C4072559E2C600B50DD8 /* SceneDelegate.swift in Sources */,
 			);

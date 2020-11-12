@@ -11,11 +11,13 @@ import UIKit
 // MARK: - Model
 struct Mail {
     var title: String?
-    var detail: [String]?
+    var detail: [[String:String]]?
+    var isOpened: Bool?
     
-    init(title: String, detail: [String]) {
+    init(title: String, detail: [[String:String]], ispOpened: Bool) {
         self.title = title
         self.detail = detail
+        self.isOpened = ispOpened
     }
 }
 
@@ -27,6 +29,7 @@ class ViewController: UIViewController {
     
     // ⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬
     
+    let mv = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
     // MARK: - CYCLE LIFE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,7 @@ class ViewController: UIViewController {
         self.title = mailArray[0].title // set title off navigation Bar
         setUpRefreshControl()
         
+        mv.backgroundColor = .red
     }
     
     @objc func didpull() {
@@ -50,9 +54,42 @@ class ViewController: UIViewController {
     // MARK: - SET UP
     //model
     func setDataArrayForMail() {
-        mailArray.append(Mail(title: "Boîtes", detail:["-Toutes les boites","-iCloud","-Gmail","-Yahoo","-VIP", "-Special"]))
-        mailArray.append(Mail(title: "ACTION MAIL", detail:["Reception","Brouillon","envoyé","Corbeille","Archive"]))
-        mailArray.append(Mail(title: "ACTION MAIL", detail:["Reception","Brouillon","envoyé","Corbeille","Archive", "magie", "Draft", "mario"]))
+        /*
+         Mail["title":"...", "details": [
+            [
+                "icon":"forward",
+                "title":"Toutes les boites",
+                "count":"12"
+                "iconForward":"forward"
+            ],
+             [
+             "icon":"forward",
+             "title":"Toutes les boites",
+             "count":"12"
+             "iconForward":"forward"
+             ],
+         ]]
+         */
+        
+        mailArray.append(Mail(title: "Boîtes", detail:
+                                [
+                                    ["icon":"tray.2","title":"Toutes les boites mails", "count":"1" ],
+                                    ["icon":"tray","title":"Icloud", "count":"5" ],
+                                    ["icon":"tray","title":"Gmail", "count":"4842" ],
+                                    ["icon":"star", "title":"VIP", "count":"_" ]
+                                ], ispOpened: true
+        ))
+        mailArray.append(Mail(
+            title: "Boîtes",
+            detail:
+                [
+                    ["icon":"tray.2","title":"Toutes les boites mails", "count":"1" ],
+                    ["icon":"tray","title":"Icloud", "count":"5" ],
+                    ["icon":"tray","title":"Gmail", "count":"4842" ],
+                    ["icon":"star", "title":"VIP", "count":"_" ]
+                ], ispOpened: true
+        ))
+        
     }
 }
 
@@ -65,8 +102,38 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return mailArray[section].detail?.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = mailArray[indexPath.section].detail?[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MailTableViewCell
+        
+        // ✔︎ ICONMAIN
+        cell.iconMain.image = UIImage(systemName: mailArray[indexPath.section].detail?[indexPath.row]["icon"] ?? "")
+        // ✔︎ TITLE
+        cell.title.text = mailArray[indexPath.section].detail?[indexPath.row]["title"] ?? ""
+        
+        // ❔ Quoi   - 🗺 Ou   - ⏳Quand - ✋Comment
+        // 🤸🏽 Action - 🗺 Lieu - ⏳Temps - ✋Maniere
+        
+        // ✔︎ COUNT
+        let count = mailArray[indexPath.section].detail?[indexPath.row]["count"] ?? ""
+        if count == "_" {
+            // images
+            let lVipImage = UIImageView(image: UIImage(systemName: "info.circle"))
+            lVipImage.frame = cell.customViewRow.bounds
+            lVipImage.contentMode = UIView.ContentMode.right
+            cell.customViewRow.backgroundColor = .clear
+            cell.customViewRow.addSubview(lVipImage)
+        } else {
+            // label // ✔︎
+            let lLabelCount = UILabel(frame: cell.customViewRow.bounds)
+            lLabelCount.textAlignment = .right
+            lLabelCount.text = count
+            cell.customViewRow.backgroundColor = .clear
+            cell.customViewRow.addSubview(lLabelCount)
+        }
+        
+//        cell.details.text = mailArray[indexPath.section].detail?[indexPath.row]
+//        cell.textLabel?.text = mailArray[indexPath.section].detail?[indexPath.row]
+//        cell.accessoryType = .disclosureIndicator
+        
         return cell
     }
 }
