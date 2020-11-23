@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		930C20162561540D00512A05 /* StaticTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930C20152561540D00512A05 /* StaticTableViewController.swift */; };
-		930C201B25615A9700512A05 /* CellS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930C201A25615A9700512A05 /* CellS.swift */; };
-		930C20282561667100512A05 /* WiFiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930C20262561667100512A05 /* WiFiCell.swift */; };
-		930C20292561667100512A05 /* WiFiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 930C20272561667100512A05 /* WiFiCell.xib */; };
+		930C20162561540D00512A05 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930C20152561540D00512A05 /* MainTableViewController.swift */; };
 		9380C4052559E2C600B50DD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380C4042559E2C600B50DD8 /* AppDelegate.swift */; };
 		9380C4072559E2C600B50DD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380C4062559E2C600B50DD8 /* SceneDelegate.swift */; };
 		9380C4092559E2C600B50DD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380C4082559E2C600B50DD8 /* ViewController.swift */; };
@@ -19,8 +16,8 @@
 		9380C4112559E2C800B50DD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9380C4102559E2C800B50DD8 /* Assets.xcassets */; };
 		9380C4142559E2C800B50DD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9380C4122559E2C800B50DD8 /* LaunchScreen.storyboard */; };
 		9380C41F2559E2C800B50DD8 /* MailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9380C41E2559E2C800B50DD8 /* MailTests.swift */; };
-		9392E458255C70A000B8536E /* MailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392E456255C70A000B8536E /* MailTableViewCell.swift */; };
-		93F12B7C256138C8003F6BA7 /* MailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F12B7B256138C8003F6BA7 /* MailTableViewController.swift */; };
+		9392E458255C70A000B8536E /* ViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9392E456255C70A000B8536E /* ViewControllerCell.swift */; };
+		93E3CD25256C064D000FCB58 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3CD24256C064D000FCB58 /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		930C20152561540D00512A05 /* StaticTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticTableViewController.swift; sourceTree = "<group>"; };
-		930C201A25615A9700512A05 /* CellS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellS.swift; sourceTree = "<group>"; };
-		930C20262561667100512A05 /* WiFiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiCell.swift; sourceTree = "<group>"; };
-		930C20272561667100512A05 /* WiFiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WiFiCell.xib; sourceTree = "<group>"; };
+		930C20152561540D00512A05 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		9380C4012559E2C600B50DD8 /* Mail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9380C4042559E2C600B50DD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9380C4062559E2C600B50DD8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,8 +44,8 @@
 		9380C41A2559E2C800B50DD8 /* MailTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MailTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9380C41E2559E2C800B50DD8 /* MailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailTests.swift; sourceTree = "<group>"; };
 		9380C4202559E2C800B50DD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9392E456255C70A000B8536E /* MailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailTableViewCell.swift; sourceTree = "<group>"; };
-		93F12B7B256138C8003F6BA7 /* MailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailTableViewController.swift; sourceTree = "<group>"; };
+		9392E456255C70A000B8536E /* ViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCell.swift; sourceTree = "<group>"; };
+		93E3CD24256C064D000FCB58 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,20 +66,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		930C201925615A6900512A05 /* Static */ = {
+		930C201925615A6900512A05 /* 02 */ = {
 			isa = PBXGroup;
 			children = (
-				930C20152561540D00512A05 /* StaticTableViewController.swift */,
-				930C201A25615A9700512A05 /* CellS.swift */,
-				930C20262561667100512A05 /* WiFiCell.swift */,
-				930C20272561667100512A05 /* WiFiCell.xib */,
+				930C20152561540D00512A05 /* MainTableViewController.swift */,
 			);
-			name = Static;
+			name = 02;
 			sourceTree = "<group>";
 		};
 		9380C3F82559E2C600B50DD8 = {
 			isa = PBXGroup;
 			children = (
+				93E3CD24256C064D000FCB58 /* HeaderView.swift */,
 				9380C4032559E2C600B50DD8 /* Mail */,
 				9380C41D2559E2C800B50DD8 /* MailTests */,
 				9380C4022559E2C600B50DD8 /* Products */,
@@ -105,8 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				93F12B77256137F9003F6BA7 /* Views */,
-				93F12B792561380E003F6BA7 /* ViewModel */,
-				93F12B7825613807003F6BA7 /* Models */,
 				93F12B7A2561381E003F6BA7 /* Supporting Files */,
 			);
 			path = Mail;
@@ -121,30 +111,23 @@
 			path = MailTests;
 			sourceTree = "<group>";
 		};
+		93E2676D256BB69F005D98B0 /* 01 */ = {
+			isa = PBXGroup;
+			children = (
+				9380C4082559E2C600B50DD8 /* ViewController.swift */,
+				9392E456255C70A000B8536E /* ViewControllerCell.swift */,
+			);
+			name = 01;
+			sourceTree = "<group>";
+		};
 		93F12B77256137F9003F6BA7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				930C201925615A6900512A05 /* Static */,
-				9380C4082559E2C600B50DD8 /* ViewController.swift */,
+				93E2676D256BB69F005D98B0 /* 01 */,
+				930C201925615A6900512A05 /* 02 */,
 				9380C40A2559E2C600B50DD8 /* Main.storyboard */,
-				9392E456255C70A000B8536E /* MailTableViewCell.swift */,
-				93F12B7B256138C8003F6BA7 /* MailTableViewController.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		93F12B7825613807003F6BA7 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		93F12B792561380E003F6BA7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		93F12B7A2561381E003F6BA7 /* Supporting Files */ = {
@@ -241,7 +224,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				930C20292561667100512A05 /* WiFiCell.xib in Resources */,
 				9380C4142559E2C800B50DD8 /* LaunchScreen.storyboard in Resources */,
 				9380C4112559E2C800B50DD8 /* Assets.xcassets in Resources */,
 				9380C40C2559E2C600B50DD8 /* Main.storyboard in Resources */,
@@ -262,15 +244,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				930C20162561540D00512A05 /* StaticTableViewController.swift in Sources */,
-				930C20282561667100512A05 /* WiFiCell.swift in Sources */,
-				930C201B25615A9700512A05 /* CellS.swift in Sources */,
+				930C20162561540D00512A05 /* MainTableViewController.swift in Sources */,
 				9380C40F2559E2C600B50DD8 /* Mail.xcdatamodeld in Sources */,
 				9380C4092559E2C600B50DD8 /* ViewController.swift in Sources */,
-				9392E458255C70A000B8536E /* MailTableViewCell.swift in Sources */,
+				9392E458255C70A000B8536E /* ViewControllerCell.swift in Sources */,
 				9380C4052559E2C600B50DD8 /* AppDelegate.swift in Sources */,
-				93F12B7C256138C8003F6BA7 /* MailTableViewController.swift in Sources */,
 				9380C4072559E2C600B50DD8 /* SceneDelegate.swift in Sources */,
+				93E3CD25256C064D000FCB58 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

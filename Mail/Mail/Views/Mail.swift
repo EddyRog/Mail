@@ -1,15 +1,9 @@
-//
 //  ViewController.swift
 //  Mail
-//
-//  Created by Eddy R on 09/11/2020.
-//  Copyright © 2020 Eddy R. All rights reserved.
-//
-
 
 import UIKit
 // MARK: - Model
-struct Mail {
+struct Maildata {
     var title: String?
     var detail: [[String:String]]?
     var isOpened: Bool?
@@ -21,21 +15,21 @@ struct Mail {
     }
 }
 
-class ViewController: UIViewController {
+class Mail: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
-    var mailArray: [Mail] = [] // MODEL
+    var mailArray: [Maildata] = [] // MODEL
     var defaultFirstHeaderRow: CGFloat = 1 // HEIGHT ROW : HEADER
     var defaultRestOfHeaderRow: CGFloat = 30
     
     // ⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬⌬
-    
     let mv = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
     // MARK: - CYCLE LIFE
     override func viewDidLoad() {
         super.viewDidLoad()
         setDataArrayForMail()
         self.title = mailArray[0].title // set title off navigation Bar
-        setUpRefreshControl()
+//        setUpRefreshControl()
         
         mv.backgroundColor = .red
     }
@@ -50,28 +44,13 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+
     // MARK: - SET UP
-    //model
+    //mode
+    
+
     func setDataArrayForMail() {
-        /*
-         Mail["title":"...", "details": [
-            [
-                "icon":"forward",
-                "title":"Toutes les boites",
-                "count":"12"
-                "iconForward":"forward"
-            ],
-             [
-             "icon":"forward",
-             "title":"Toutes les boites",
-             "count":"12"
-             "iconForward":"forward"
-             ],
-         ]]
-         */
-        
-        mailArray.append(Mail(title: "Boîtes", detail:
+        mailArray.append(Maildata(title: "Boîtes", detail:
                                 [
                                     ["icon":"tray.2","title":"Toutes les boites mails", "count":"1" ],
                                     ["icon":"tray","title":"Icloud", "count":"5" ],
@@ -79,7 +58,9 @@ class ViewController: UIViewController {
                                     ["icon":"star", "title":"VIP", "count":"_" ]
                                 ], ispOpened: true
         ))
-        mailArray.append(Mail(
+        
+        
+        mailArray.append(Maildata(
             title: "Boîtes",
             detail:
                 [
@@ -89,12 +70,11 @@ class ViewController: UIViewController {
                     ["icon":"star", "title":"VIP", "count":"_" ]
                 ], ispOpened: true
         ))
-        
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension Mail: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return mailArray.count
     }
@@ -102,16 +82,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return mailArray[section].detail?.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ViewControllerCell
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MailCell", for: indexPath) as! MailCell
+
         // ✔︎ ICONMAIN
         cell.iconMain.image = UIImage(systemName: mailArray[indexPath.section].detail?[indexPath.row]["icon"] ?? "")
         // ✔︎ TITLE
         cell.title.text = mailArray[indexPath.section].detail?[indexPath.row]["title"] ?? ""
-        
-        // ❔ Quoi   - 🗺 Ou   - ⏳Quand - ✋Comment
-        // 🤸🏽 Action - 🗺 Lieu - ⏳Temps - ✋Maniere
-        
+
         // ✔︎ COUNT
         let count = mailArray[indexPath.section].detail?[indexPath.row]["count"] ?? ""
         if count == "_" {
@@ -129,18 +106,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             cell.customViewRow.backgroundColor = .clear
             cell.customViewRow.addSubview(lLabelCount)
         }
-        
+
 //        cell.details.text = mailArray[indexPath.section].detail?[indexPath.row]
 //        cell.textLabel?.text = mailArray[indexPath.section].detail?[indexPath.row]
 //        cell.accessoryType = .disclosureIndicator
-        
+
         return cell
     }
 }
 
 
 // MARK: - HEADER TABLEVIEW
-extension ViewController {
+extension Mail {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section != 0 {
             return defaultRestOfHeaderRow
@@ -151,7 +128,7 @@ extension ViewController {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let v = UIView()
         v.backgroundColor = .clear
-        
+
         if section != 0 {
             // Label BLACK
             let label = UILabel()
@@ -160,9 +137,9 @@ extension ViewController {
             label.textColor = .gray
             label.backgroundColor = .black
             label.font = UIFont.boldSystemFont(ofSize: 14)
-            
+
             v.addSubview(label)
-            
+
             return v
         } else {
             // Label BLACK
@@ -170,7 +147,7 @@ extension ViewController {
             label.frame = CGRect(x: 0, y:0, width: tableView.frame.size.width, height: defaultFirstHeaderRow)
             label.text = ""
             label.textColor = .gray
-            
+
             //MARK: -
             // FIXME: a remettre en clear
             //            label.backgroundColor = .clear
@@ -180,12 +157,12 @@ extension ViewController {
             label.textColor = UIColor.white
             label.minimumScaleFactor = 0.2
             label.adjustsFontSizeToFitWidth = true
-            
+
             v.addSubview(label)
-            
+
             return v
         }
-        
+
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return mailArray[section].title
@@ -193,7 +170,7 @@ extension ViewController {
 }
 
 // MARK: - FOOTER TABLEVIEW
-extension ViewController {
+extension Mail {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
     }
@@ -205,7 +182,7 @@ extension ViewController {
 }
 
 // MARK: - SPINNER RELOAD DATA
-extension ViewController {
+extension Mail {
     // Spinner behind TableView
     func setUpRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
@@ -217,8 +194,27 @@ extension ViewController {
         tableView.refreshControl?.tintColor = .red
         tableView.refreshControl?.addTarget(self, action: #selector(didpull), for: .valueChanged)
     }
-//
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

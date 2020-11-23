@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MailTableViewCell: UITableViewCell {
+class ViewControllerCell: UITableViewCell {
     @IBOutlet weak var iconMain: UIImageView!
     @IBOutlet weak var title: UILabel!
 //    @IBOutlet weak var countMail: UILabel!
